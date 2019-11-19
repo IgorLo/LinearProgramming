@@ -37,4 +37,10 @@ object Utilities {
         return maxLength
     }
 
+    fun printVector(vector: DoubleArray) {
+        for (i in 0 until vector.size) {
+            println(vector[i])
+        }
+    }
+
 }

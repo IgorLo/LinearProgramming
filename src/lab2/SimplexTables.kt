@@ -2,7 +2,7 @@ package lab2
 
 import lab2.Constants.ROUND_DECIMALS
 import lab2.Utilities.printText as printText
-import lab2.Utilities.printDoubleMatrix as printMatrix
+import lab2.Utilities.printVector as printVector
 import lab2.Utilities.roundDouble as round
 
 object SimplexTables {
@@ -31,7 +31,7 @@ object SimplexTables {
         return recalculatedMatrix
     }
 
-    private fun recalculateStep(matrix: Array<DoubleArray>, verticalIndex: Int, horizontalIndex: Int): Array<DoubleArray> {
+    fun recalculateStep(matrix: Array<DoubleArray>, verticalIndex: Int, horizontalIndex: Int): Array<DoubleArray> {
         val theChoosenOne = matrix[horizontalIndex][verticalIndex]
         val newMatrix = Array(matrix.size){DoubleArray(matrix[0].size) {0.0}}
         for (i in 0 until matrix.size) {
@@ -59,7 +59,7 @@ object SimplexTables {
 
 
     private fun chooseHorizontalIndex(matrix: Array<DoubleArray>, verticalIndex: Int): Int {
-        val vector = DoubleArray(matrix.size) { Double.MAX_VALUE }
+        val vector = DoubleArray(matrix.size - 1) { Double.MAX_VALUE }
         var indexOfMax = 0
         val rightVertical = matrix[0].size - 1
         for (i in 0 until matrix.size - 1) {
@@ -68,6 +68,7 @@ object SimplexTables {
                 indexOfMax = i
             }
         }
+        printVector(vector)
         return indexOfMax
     }
 
