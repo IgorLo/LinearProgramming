@@ -1,5 +1,8 @@
 package lab6
 
+import org.graphstream.graph.Graph
+import org.graphstream.graph.Node
+import org.graphstream.graph.implementations.SingleGraph
 import java.util.*
 import kotlin.math.pow
 import kotlin.math.roundToInt
@@ -73,7 +76,23 @@ object GraphCreator {
 //        val paths : Set<Path> = generateAllPaths()
         generateAllPaths()
         printAllPaths()
+        displayGraph()
 
+    }
+
+    private fun displayGraph() {
+        val graph = SingleGraph("Sapr")
+        for (vert in vertexes){
+            graph.addNode<Node>(vert.id.toString())
+        }
+        for (edge in edges){
+            val addedEdge = graph.addEdge<org.graphstream.graph.Edge>(
+                edges.indexOf(edge).toString(),
+                edge.fromId.toString(),
+                edge.toId.toString()
+            )
+        }
+        graph.display()
     }
 
     private fun printAllPaths() {
