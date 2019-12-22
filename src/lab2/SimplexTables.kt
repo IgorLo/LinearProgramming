@@ -60,16 +60,22 @@ object SimplexTables {
 
     private fun chooseHorizontalIndex(matrix: Array<DoubleArray>, verticalIndex: Int): Int {
         val vector = DoubleArray(matrix.size - 1) { Double.MAX_VALUE }
-        var indexOfMax = 0
+        var indexOfMin = 0
+        var min = Double.MAX_VALUE
         val rightVertical = matrix[0].size - 1
         for (i in 0 until matrix.size - 1) {
             vector[i] = -matrix[i][rightVertical] / matrix[i][verticalIndex]
-            if (vector[i] <= vector.min()!! && matrix[i][verticalIndex] < 0) {
-                indexOfMax = i
+//            if (vector[i] <= vector.min()!! && matrix[i][verticalIndex] < 0) {
+//                indexOfMin = i
+//            }
+            if (vector[i] <= min && vector[i] > 0){
+                indexOfMin = i
+                min = vector[i]
             }
         }
+        println("b/xi")
         printVector(vector)
-        return indexOfMax
+        return indexOfMin
     }
 
     private fun chooseVerticalIndex(matrix: Array<DoubleArray>): Int {
